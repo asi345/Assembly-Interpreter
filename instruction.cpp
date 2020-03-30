@@ -316,7 +316,7 @@ namespace instruction {
         operand1LastHex = reg % (1 << 4);
         operand2HighBit = operand2 / (1 << 15);
         int sum = reg - operand2;
-        reg = (unsigned short) sum % (1 << 16);
+        reg = (unsigned short) (sum % (1 << 16));
         zf = !reg;
         cf = sum < 0;
         sf = reg / (1 << 15);
@@ -331,7 +331,7 @@ namespace instruction {
         operand1LastHex = reg1 % (1 << 4);
         operand2HighBit = reg2 / (1 << 7);
         int sum = reg1 - reg2;
-        reg1 = (unsigned char) sum % (1 << 8);
+        reg1 = (unsigned char) (sum % (1 << 8));
         zf = !reg1;
         cf = sum < 0;
         sf = reg1 / (1 << 7);
@@ -349,7 +349,7 @@ namespace instruction {
         operand1LastHex = reg % (1 << 4);
         operand2HighBit = operand2 / (1 << 7);
         int sum = reg - operand2;
-        reg = (unsigned char) sum % (1 << 8);
+        reg = (unsigned char) (sum % (1 << 8));
         zf = !reg;
         cf = sum < 0;
         sf = reg / (1 << 7);
@@ -367,7 +367,7 @@ namespace instruction {
         operand1LastHex = reg % (1 << 4);
         operand2HighBit = operand2 / (1 << 7);
         int sum = reg - operand2;
-        reg = (unsigned char) sum % (1 << 8);
+        reg = (unsigned char) (sum % (1 << 8));
         zf = !reg;
         cf = sum < 0;
         sf = reg / (1 << 7);
@@ -385,7 +385,7 @@ namespace instruction {
         operand1LastHex = operand1 % (1 << 4);
         operand2HighBit = reg / (1 << 15);
         int sum = operand1 - reg;
-        operand1 = (unsigned short) sum % (1 << 16);
+        operand1 = (unsigned short) (sum % (1 << 16));
         zf = !operand1;
         cf = sum < 0;
         sf = operand1 / (1 << 15);
@@ -408,7 +408,7 @@ namespace instruction {
         operand1LastHex = operand1 % (1 << 4);
         operand2HighBit = operand2 / (1 << 15);
         int sum = operand1 - operand2;
-        operand1 = (unsigned short) sum % (1 << 16);
+        operand1 = (unsigned short) (sum % (1 << 16));
         zf = !operand1;
         cf = sum < 0;
         sf = operand1 / (1 << 15);
@@ -430,7 +430,7 @@ namespace instruction {
         operand1LastHex = operand1 % (1 << 4);
         operand2HighBit = reg / (1 << 7);
         int sum = operand1 - reg;
-        operand1 = (unsigned char) sum % (1 << 8);
+        operand1 = (unsigned char) (sum % (1 << 8));
         zf = !operand1;
         cf = sum < 0;
         sf = operand1 / (1 << 7);
@@ -450,7 +450,7 @@ namespace instruction {
         operand1LastHex = operand1 % (1 << 4);
         operand2HighBit = operand2 / (1 << 7);
         int sum = operand1 - operand2;
-        operand1 = (unsigned char) sum % (1 << 8);
+        operand1 = (unsigned char) (sum % (1 << 8));
         zf = !operand1;
         cf = sum < 0;
         sf = operand1 / (1 << 7);
@@ -1228,8 +1228,10 @@ namespace instruction {
         }
         if (reg2 == 1)
             of = cf ^ (reg1 / (1 << 15));
-        zf = !reg1;
-        sf = reg1 / (1 << 15);
+        if (reg2) {
+            zf = !reg1;
+            sf = reg1 / (1 << 15);
+        }
         return true;
     }
 
@@ -1244,8 +1246,10 @@ namespace instruction {
         }
         if (num == 1)
             of = cf ^ (reg / (1 << 15));
-        zf = !reg;
-        sf = reg / (1 << 15);
+        if (num) {
+            zf = !reg;
+            sf = reg / (1 << 15);
+        }
         return true;
     }
 
@@ -1258,8 +1262,10 @@ namespace instruction {
         }
         if (reg2 == 1)
             of = cf ^ (reg1 / (1 << 7));
-        zf = !reg1;
-        sf = reg1 / (1 << 7);
+        if (reg2) {
+            zf = !reg1;
+            sf = reg1 / (1 << 7);
+        }
         return true;
     }
 
@@ -1274,8 +1280,10 @@ namespace instruction {
         }
         if (num == 1)
             of = cf ^ (reg / (1 << 7));
-        zf = !reg;
-        sf = reg / (1 << 7);
+        if (num) {
+            zf = !reg;
+            sf = reg / (1 << 7);
+        }
         return true;
     }
 
@@ -1291,8 +1299,10 @@ namespace instruction {
         }
         if (reg == 1)
             of = cf ^ (operand1 / (1 << 15));
-        zf = !operand1;
-        sf = operand1 / (1 << 15);
+        if (reg) {
+            zf = !operand1;
+            sf = operand1 / (1 << 15);
+        }
         unsigned char low = operand1 % (1 << 8);
         unsigned char high = operand1 / (1 << 8);
         memory[address + 1] = high;
@@ -1312,8 +1322,10 @@ namespace instruction {
         }
         if (num == 1)
             of = cf ^ (operand1 / (1 << 15));
-        zf = !operand1;
-        sf = operand1 / (1 << 15);
+        if (num) {
+            zf = !operand1;
+            sf = operand1 / (1 << 15);
+        }
         unsigned char low = operand1 % (1 << 8);
         unsigned char high = operand1 / (1 << 8);
         memory[address + 1] = high;
@@ -1333,8 +1345,10 @@ namespace instruction {
         }
         if (reg == 1)
             of = cf ^ (operand1 / (1 << 7));
-        zf = !operand1;
-        sf = operand1 / (1 << 7);
+        if (reg) {
+            zf = !operand1;
+            sf = operand1 / (1 << 7);
+        }
         memory[address] = operand1;
         return true;
     }
@@ -1351,8 +1365,10 @@ namespace instruction {
         }
         if (num == 1)
             of = cf ^ (operand1 / (1 << 7));
-        zf = !operand1;
-        sf = operand1 / (1 << 7);
+        if (num) {
+            zf = !operand1;
+            sf = operand1 / (1 << 7);
+        }
         memory[address] = operand1;
         return true;
     }
