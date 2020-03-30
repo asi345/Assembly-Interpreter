@@ -1,5 +1,5 @@
 code segment
-   mov bx, offset dat2
+   mov bx, offset  dat2
    mov bp,bx
    dec bp
    add bx,2h
@@ -15,7 +15,7 @@ code segment
    dec bp
    mov bx,bp
 more:
-   mov dl,b[bx]
+   mov dl,  [ bx ]
    int 21h
    inc bx
    dec cx

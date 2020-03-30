@@ -20,10 +20,7 @@ bool run();
 void printFinalState();
 
 int main(int argc, const char * argv[]) {
-    // : içeren var def yok
     // ilk substr den sonra popbackten önce isEmpty
-    // w var1 WTFF
-    // negative number
     input.open(argv[1]);
     bool isTrue = initialize();
     if (!isTrue)

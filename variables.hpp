@@ -9,7 +9,7 @@
 #ifndef variables_hpp
 #define variables_hpp
 
-#include <stdio.h>
+#include <iostream>
 
 #include <fstream>
 #include <unordered_set>
@@ -57,6 +57,7 @@ extern bool sf;
 extern bool of;
 extern bool af;
 
+// Keeps the label to be jumped when jump instruction is performed
 extern string nextLabel;
 
 // Connects labels with their line numbers.
@@ -73,7 +74,7 @@ extern vector<string> labels;
 // Connects variable names with their memory addresses.
 extern unordered_map<string, int> addresses;
 
-// Connects varibale names with their storage in the memory (byte, word, doubleword)
+// Connects varibale names with their storage in the memory (byte, word)
 extern unordered_map<string, char> types;
 
 // Connects memory addresses with their contents (a cell holds 1 byte).

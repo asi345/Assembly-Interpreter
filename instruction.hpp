@@ -16,7 +16,8 @@ using namespace std;
 
 /* Contains the functions that actually performs the instructions given in the Assembly code. These
  functions make use of *operation* namespace to determine which function to run and what parameters
- to use. They also do not check for errors, that job is done at the *operation* namespace functions.
+ to use. They also do not check for syntax errors, that job is done at the *operation* namespace
+ functions. They only check for overflow errors.
 */
 namespace instruction {
 
