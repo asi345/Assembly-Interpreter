@@ -111,7 +111,7 @@ bool readLines() {
     // Labels are considered to be started from *untitled* because all lines should be in a label
     string line, curLabel = "untitled";
     int lineNum = 0, address = 0;
-    // "Code segment" line is not enocuntered yet
+    // "Code segment" line is not encountered yet
     bool isSegment = true;
     // Instruction, operand1 and operand2 tokens
     vector<string> tokens;
@@ -135,7 +135,7 @@ bool readLines() {
             block.push_back(vector<string> (3, ""));
             continue;
         }
-        // Lowercase the line to understand it easily
+        // Lowercase the line to understand it easily except if there is a char operand like 'A'
         for (it = line.begin(); it != line.end(); it++) {
             *it = tolower(*it);
             if (*it == '\'')

@@ -420,7 +420,7 @@ namespace instruction {
     // Performs the "dec" instruction in a byte in memory.
     bool dec_badd(int& address);
 
-    // Performs the "int" instruction
+    // Performs the "int" instruction.
     bool int21h();
 }
 
