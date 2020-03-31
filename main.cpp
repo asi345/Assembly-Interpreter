@@ -148,10 +148,14 @@ bool readLines() {
             continue;
         }
         // If a label is encountered, record the current label and quit
-        if (line.back() == ':' && line.find(' ') == line.npos) {
+        if (line.back() == ':') {
             line.pop_back();
             while (!line.empty() && line.back() == ' ')
                 line.pop_back();
+            if (line.find(' ') != line.npos) {
+                cout << "Syntax error at line " << lineNum << endl;
+                return false;
+            }
             labels.push_back(line);
             labelLines[line] = lineNum;
             blocks[curLabel] = block;
