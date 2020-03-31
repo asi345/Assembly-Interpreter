@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
     isTrue = run();
     if (!isTrue)
         return 0;
-    printFinalState();
+    // printFinalState();
     input.close();
     return 0;
 }
