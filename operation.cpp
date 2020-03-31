@@ -42,6 +42,11 @@ namespace operation {
         // Turn it to lowercase
         for (it = varName.begin(); it != varName.end(); it++)
             *it = tolower(*it);
+        // If that variable is already defined
+        if (types.find(varName) != types.end()) {
+            cout << "Error at line " << lineNum << endl;
+            return false;
+        }
         // Process rest of the line
         string varRest = line.substr(space + 1);
         // If the "code ends" line is encountered

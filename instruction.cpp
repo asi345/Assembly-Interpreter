@@ -1382,8 +1382,10 @@ namespace instruction {
             reg1 = reg1 >> 1;
             shift--;
         }
-        zf = !reg1;
-        sf = reg1 / (1 << 15);
+        if (reg2) {
+            zf = !reg1;
+            sf = reg1 / (1 << 15);
+        }
         return true;
     }
 
@@ -1398,8 +1400,10 @@ namespace instruction {
             reg = reg >> 1;
             shift--;
         }
-        zf = !reg;
-        sf = reg / (1 << 15);
+        if (num) {
+            zf = !reg;
+            sf = reg / (1 << 15);
+        }
         return true;
     }
 
@@ -1412,8 +1416,10 @@ namespace instruction {
             reg1 = reg1 >> 1;
             shift--;
         }
-        zf = !reg1;
-        sf = reg1 / (1 << 7);
+        if (reg2) {
+            zf = !reg1;
+            sf = reg1 / (1 << 7);
+        }
         return true;
     }
 
@@ -1428,8 +1434,10 @@ namespace instruction {
             reg = reg >> 1;
             shift--;
         }
-        zf = !reg;
-        sf = reg / (1 << 7);
+        if (num) {
+            zf = !reg;
+            sf = reg / (1 << 7);
+        }
         return true;
     }
 
@@ -1445,8 +1453,10 @@ namespace instruction {
             operand1 = operand1 >> 1;
             shift--;
         }
-        zf = !operand1;
-        sf = operand1 / (1 << 15);
+        if (reg) {
+            zf = !operand1;
+            sf = operand1 / (1 << 15);
+        }
         unsigned char low = operand1 % (1 << 8);
         unsigned char high = operand1 / (1 << 8);
         memory[address + 1] = high;
@@ -1466,8 +1476,10 @@ namespace instruction {
             operand1 = operand1 >> 1;
             shift--;
         }
-        zf = !operand1;
-        sf = operand1 / (1 << 15);
+        if (num) {
+            zf = !operand1;
+            sf = operand1 / (1 << 15);
+        }
         unsigned char low = operand1 % (1 << 8);
         unsigned char high = operand1 / (1 << 8);
         memory[address + 1] = high;
@@ -1487,8 +1499,10 @@ namespace instruction {
             operand1 = operand1 >> 1;
             shift--;
         }
-        zf = !operand1;
-        sf = operand1 / (1 << 7);
+        if (reg) {
+            zf = !operand1;
+            sf = operand1 / (1 << 7);
+        }
         memory[address] = operand1;
         return true;
     }
@@ -1505,8 +1519,10 @@ namespace instruction {
             operand1 = operand1 >> 1;
             shift--;
         }
-        zf = !operand1;
-        sf = operand1 / (1 << 7);
+        if (num) {
+            zf = !operand1;
+            sf = operand1 / (1 << 7);
+        }
         memory[address] = operand1;
         return true;
     }
@@ -1706,7 +1722,7 @@ namespace instruction {
             return false;
         tempCf = cf;
         int one = 1;
-        add_wadd_num(address, one);
+        add_badd_num(address, one);
         cf = tempCf;
         return true;
     }
@@ -1742,7 +1758,7 @@ namespace instruction {
             return false;
         tempCf = cf;
         int one = 1;
-        sub_wadd_num(address, one);
+        sub_badd_num(address, one);
         cf = tempCf;
         return true;
     }
