@@ -152,7 +152,7 @@ bool readLines() {
             line.pop_back();
             while (!line.empty() && line.back() == ' ')
                 line.pop_back();
-            if (line.find(' ') != line.npos) {
+            if (line.empty() || line.find(' ') != line.npos || !isalpha(line.front())) {
                 cout << "Syntax error at line " << lineNum << endl;
                 return false;
             }

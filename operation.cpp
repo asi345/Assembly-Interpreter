@@ -42,8 +42,8 @@ namespace operation {
         // Turn it to lowercase
         for (it = varName.begin(); it != varName.end(); it++)
             *it = tolower(*it);
-        // If that variable is already defined
-        if (types.find(varName) != types.end()) {
+        // If that variable is already defined or it does not starts with a letter
+        if (!isalpha(varName.front()) || types.find(varName) != types.end()) {
             cout << "Error at line " << lineNum << endl;
             return false;
         }
