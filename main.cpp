@@ -277,6 +277,7 @@ bool run() {
 }
 
 void printFinalState() {
+    cout << endl;
     cout << "ax :   " << ax << endl;
     cout << "bx :   " << bx << endl;
     cout << "cx :   " << cx << endl;
