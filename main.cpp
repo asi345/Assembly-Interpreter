@@ -188,6 +188,7 @@ bool readLines() {
                     cout << "\"code segment\" line can not be found.";
                     return false;
                 } else {
+                    // This line is recorded as empty line to make the parsing and processing easier
                     block.push_back(vector<string> (3, ""));
                     isSegment = false;
                     continue;
