@@ -34,7 +34,6 @@ bool run();
 void printFinalState();
 
 int main(int argc, const char * argv[]) {
-    // ilk substr den sonra popbackten önce isEmpty
     input.open(argv[1]);
     bool isTrue = initialize();
     if (!isTrue)
