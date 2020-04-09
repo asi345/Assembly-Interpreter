@@ -191,9 +191,12 @@ namespace operation {
 
     int hexToDec(string hex) {
         // Hex numbers must include 'h' at the end
-        if (hex.empty() || hex.back() != 'h')
+        if (hex.empty())
             return INT32_MAX;
-        hex.pop_back();
+        if (hex.back() != 'h' && hex.front() != '0')
+            return INT32_MAX;
+        if (hex.back() == 'h')
+            hex.pop_back();
         int result = 0, base = 1;
         string::reverse_iterator it;
         char first = hex.front();
