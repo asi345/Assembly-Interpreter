@@ -190,7 +190,7 @@ namespace operation {
     }
 
     int hexToDec(string hex) {
-        // Hex numbers must include 'h' at the end pr '0' at the beginning
+        // Hex numbers must include 'h' at the end or '0' at the beginning
         if (hex.empty())
             return INT32_MAX;
         if (hex.back() != 'h' && hex.front() != '0')
